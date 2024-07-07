@@ -1,0 +1,19 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./data:/var/lib/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER:guest
+      - RABBITMQ_DEFAULT_PASS:guest
+  mysql-8:
+    image: mysql:5-oracle
+    container_name: mysql_rabbit
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "register"
+    ports:
+      - "3306:3306"
